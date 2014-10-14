@@ -33,13 +33,14 @@ import Sailfish.Silica 1.0
 
 CoverBackground {
     Column {
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: Theme.paddingLarge
         spacing: 10
         width: parent.width
         Image {
             anchors.horizontalCenter: parent.horizontalCenter
             opacity: 0.5
-            source: "qrc:///duckduckgo_cover.png"
+            source: "qrc:///duckduckgo.png"
         }
         Label {
             anchors.horizontalCenter: parent.horizontalCenter

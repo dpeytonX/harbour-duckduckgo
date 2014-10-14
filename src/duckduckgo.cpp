@@ -28,9 +28,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifdef QT_QML_DEBUG
 #include <QtQuick>
-#endif
 
 #include <sailfishapp.h>
 #include "manager.h"
@@ -48,7 +46,6 @@ int main(int argc, char *argv[])
     // To display the view, call "show()" (will show fullscreen on device).
 
     qmlRegisterType<Manager>("com.github.prplmnky.duckduckgo", 1, 0, "Manager");
-    //QResource::registerResource("/path/to/myresource.rcc");
     return SailfishApp::main(argc, argv);
 }
 
