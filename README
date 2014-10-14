@@ -3,7 +3,7 @@ This is a Sailfish application which toggles the default search engine to Duck D
 
 <h2>License</h2>
 
-This project is GPLv3 unless otherwise indicated on the file itself. Files with other licenses are copyrighted to their respective owners. DuckDuckGo and the DuckDuckGo images are owned by DuckDuckGo, Inc. I am in no way affiliated with DuckDuckGo.
+This project is GPLv3 unless otherwise indicated on the file itself. Files with other licenses are copyrighted to their respective owners. DuckDuckGo and the DuckDuckGo images are owned by DuckDuckGo, Inc. I am in no way affiliated with <a href="https://duckduckgo.com">DuckDuckGo</a>.
 
 Version 1.0
 
@@ -12,4 +12,4 @@ Version 1.0
  - Provide a UI to toggle DuckDuckGo search<br>
 
 <br>
-Copyright ©2014 Dametrious Peyton. All Rights Reserv3ed
+Copyright ©2014 Dametrious Peyton. All Rights Reserved

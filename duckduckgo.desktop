@@ -3,8 +3,8 @@ Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=duckduckgo
 Exec=duckduckgo
-Name=DuckDuckGo
+Name=DDG Search
 # translation example:
 # your app name in German locale (de)
-Name[de]=DuckDuckGo
+Name[de]=DDG Search
 
