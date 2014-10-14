@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/project">
+        <file>duckduckgo.xml</file>
+    </qresource>
+</RCC>
