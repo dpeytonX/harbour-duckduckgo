@@ -1,6 +1,10 @@
 <h2>About</h2>
 This is a Sailfish application which toggles the default search engine to Duck Duck GO.
 
+<b>I can't put this on Jolla Store because among other things it writes to the .mozembed directory</b>
+<p>
+Download the binary from the download directory.
+
 <h2>License</h2>
 
 This project is GPLv3 unless otherwise indicated on the file itself. Files with other licenses are copyrighted to their respective owners. DuckDuckGo and the DuckDuckGo images are owned by DuckDuckGo, Inc. I am in no way affiliated with <a href="https://duckduckgo.com">DuckDuckGo</a>.
