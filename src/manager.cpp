@@ -23,8 +23,20 @@ bool Manager::toggleDuckDuckGo(bool enable) {
             return false;
         }
 
+        QFile newFile("/home/nemo/.mozilla/mozembed/searchplugins/duckduckgo.xml");
+        if(file.exists()) {
+            qDebug() << "Resource file already exists. Removing...";
+            bool result = newFile.remove();
+            if(result) {
+                qDebug() << "Copying file to " << newFile.fileName();
+                result = file.copy(newFile.fileName());
+            }
+            qDebug() << "file was " << (result ? "copied" : "not copied");
+            return result;
+        }
+
         // Copy file to user's home directory
-        bool result = file.copy("/home/nemo/.mozilla/mozembed/searchplugins/duckduckgo.xml");
+        bool result = file.copy(newFile.fileName());
         qDebug() << "file was " << (result ? "copied" : "not copied");
         return result;
     }

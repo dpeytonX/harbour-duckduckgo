@@ -1,11 +1,11 @@
-Name: duckduckgo
+Name: harbour-duckduckgo
 Summary: DuckDuckGo Search
 Version: 0.1
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # http://gitorious.org/meego-developer-tools/spectacle/blobs/master/data/GROUPS
 Group: Applications/Internet
-URL: http://github.org/prplmnky/duckduckgo_sailfish
+URL: http://github.org/prplmnky/harbour-duckduckgo
 License: GPLv3
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.

@@ -1,10 +1,9 @@
 [Desktop Entry]
 Type=Application
 X-Nemo-Application-Type=silica-qt5
-Icon=duckduckgo
-Exec=duckduckgo
+Icon=harbour-duckduckgo
+Exec=harbour-duckduckgo
 Name=DDG Search
 # translation example:
 # your app name in German locale (de)
 Name[de]=DDG Search
-
