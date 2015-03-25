@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1">
 <context>
     <name></name>
     <message id="settings_browser-ph-browser">
@@ -25,7 +25,7 @@
         <translation type="obsolete">Mein Cover</translation>
     </message>
     <message>
-        <source>DDG</source>
+        <source>DuckDuckGo</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -91,22 +91,15 @@
     </message>
     <message>
         <source>Show Page 2</source>
-        <translation type="unfinished">Zur Seite 2</translation>
+        <translation type="obsolete">Zur Seite 2</translation>
     </message>
     <message>
         <source>UI Template</source>
-        <translation type="unfinished">UI-Vorlage</translation>
+        <translation type="obsolete">UI-Vorlage</translation>
     </message>
     <message>
         <source>Hello Sailors</source>
-        <translation type="unfinished">Hallo Matrosen</translation>
-    </message>
-</context>
-<context>
-    <name>StandardListView</name>
-    <message>
-        <source>No items</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Hallo Matrosen</translation>
     </message>
 </context>
 </TS>

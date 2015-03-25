@@ -14,11 +14,18 @@ I can't say fully, but development will probably stop until I (or a contributor)
 
 This project is GPLv3 unless otherwise indicated on the file itself. Files with other licenses are copyrighted to their respective owners. DuckDuckGo and the DuckDuckGo images are owned by DuckDuckGo, Inc. I am in no way affiliated with <a href="https://duckduckgo.com">DuckDuckGo</a>.
 
-Version 1.0
+Version 2.0
 
 <h2>Features</h2>
  - Change the browser setting to DuckDuckGo<br>
  - Provide a UI to toggle DuckDuckGo search<br>
 
+<h2>Notes</h2>
+<h3>Harbour Store</h3>
+ - Remove hard coded paths to home dir (use $XDG_HOME) or FileManagment in SWL
+<h3>Concerned Files</h3>
+ - /home/nemo/.mozilla/mozembed/search.json
+ - /home/nemo/.mozilla/mozembed/searchplugins
+
 <br>
-Copyright ©2014 Dametrious Peyton. All Rights Reserved
+Copyright ©2015 Dametrious Peyton. All Rights Reserved

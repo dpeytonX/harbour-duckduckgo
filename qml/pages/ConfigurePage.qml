@@ -9,10 +9,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import QtQuick 2.0
+import QtQuick 2.1
 import Sailfish.Silica 1.0
+
+/*
 import org.nemomobile.configuration 1.0
-import org.sailfishos.browser.settings 1.0
+import org.sailfishos.browser.settings 1.0*/
 
 Page {
 
@@ -82,6 +84,7 @@ Page {
         }
     }
 
+    /*
     ConfigurationValue {
         id: searchEngineConfig
 
@@ -93,5 +96,5 @@ Page {
                 searchEngine.currentIndex = name2index(value)
             }
         }
-    }
+    }*/
 }

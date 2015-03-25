@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>duckduckgo_small.png</file>
-        <file>duckduckgo.png</file>
         <file>duckduckgo_cover.png</file>
+        <file alias="duckduckgo.png">harbour-duckduckgo.png</file>
     </qresource>
 </RCC>
