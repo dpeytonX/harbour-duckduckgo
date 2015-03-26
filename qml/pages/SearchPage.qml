@@ -30,7 +30,6 @@
 
 import QtQuick 2.1
 import Sailfish.Silica 1.0
-//import org.nemomobile.configuration 1.0
 import harbour.duckduckgo 1.0
 import harbour.duckduckgo.SailfishWidgets.Components 1.3
 
@@ -46,11 +45,7 @@ Page {
     // of the page, followed by our content.
     PageColumn {
         title: qsTr("DuckDuckGo Web Search")
-        //anchors.left: page.left
-        //anchors.leftMargin: Theme.paddingLage
         id: column
-        //spacing: Theme.paddingLarge
-        //width: page.width
 
         SectionHeader {
             x: Theme.paddingLarge
@@ -74,10 +69,10 @@ Page {
                 enabled = false
                 console.log("Clicked enable button")
                 if(isRemove) {
-                    cleanup(manager.toggleDuckDuckGo(false))
+                    cleanup(ddg.toggleDuckDuckGo(false))
                 } else {
-                    if(manager.toggleDuckDuckGo(true)) {
-                        //console.log("Set configuration to: " + searchEngineConfig.value)
+                    if(ddg.toggleDuckDuckGo(true)) {
+                        // console.log("Set configuration to: " + searchEngineConfig.value)
                        // searchEngineConfig.value = "DuckDuckGo"
                         // Just in case our setting was denied
                         //cleanup(searchEngineConfig.value == "DuckDuckGo")
@@ -109,10 +104,6 @@ Page {
         id: searchEngineConfig
         key: "/apps/sailfish-browser/settings/search_engine"
     }*/
-
-    Manager {
-        id: manager
-    }
 
     Component.onCompleted: {
         var exists = ddg.searchPlugin.exists

@@ -14,7 +14,7 @@ TARGET = harbour-duckduckgo
 
 CONFIG += sailfishapp
 
-SOURCES += src/duckduckgo.cpp src/manager.cpp
+SOURCES += src/duckduckgo.cpp
 
 QMAKE_CXXFLAGS += -std=c++0x
 
@@ -27,6 +27,7 @@ OTHER_FILES += qml/* \
     harbour-duckduckgo.desktop \
     harbour-duckduckgo.png \
     duckduckgo.xml \
+    duckduckgo.json \
     duckduckgo_small.png \
     duckduckgo_cover.png
 
@@ -45,5 +46,4 @@ RESOURCES += \
     images.qrc \
     project.qrc
 
-HEADERS += \
-    src/manager.h
+HEADERS +=
