@@ -2,14 +2,19 @@ import QtQuick 2.1
 import Sailfish.Silica 1.0
 import harbour.duckduckgo.SailfishWidgets.FileManagement 1.3
 import harbour.duckduckgo.SailfishWidgets.JS 1.3
+import harbour.duckduckgo.SailfishWidgets.Settings 1.3
 
 Item {
-    property string dirSearchJson: dir.XdgHome + "/.mozilla/mozembed"
-    property string dirSearchPlugin: dirSearchJson + "/searchplugins"
-    property File searchPlugin: File {fileName: dirSearchPlugin + "/duckduckgo.xml"}
-    property File searchJson: File {fileName: dirSearchJson + "/search.json"}
+    readonly property string dirSearchJson: dir.XdgHome + "/.mozilla/mozembed"
+    readonly property string dirSearchPlugin: dirSearchJson + "/searchplugins"
+    readonly property string apiString: "http://api.duckduckgo.com"
+    readonly property string searchString: "https://duckduckgo.com"
+    readonly property string templateString: "https://duckduckgo.com"
+    readonly property alias searchPlugin: bingXml
+    //property File searchPlugin: File {fileName: dirSearchPlugin + "/duckduckgo.xml"}
+    //property File searchJson: File {fileName: dirSearchJson + "/search.json"}
 
-    File {
+    /*File {
         id: pluginResource
         fileName: ":/project/duckduckgo.xml"
     }
@@ -17,105 +22,106 @@ Item {
     File {
         id: metadataResource
         fileName: ":/project/duckduckgo.json"
-    }
+    }*/
 
     Dir {
         id: dir
     }
 
-    function toggleDuckDuckGo(enable) {
-        if(enable) {
-            //Read mozilla plugin file from resource
-            if(!pluginResource.exists) {
-                console.log("Resource file does not exist")
-                return false
-            }
-
-            if(!metadataResource.exists) {
-                console.log("Metadata file does not exist")
-                return false
-            }
-
-            // Copy file to user's home directory
-            if(!_copy()) {
-                console.log("Copy failed. Removing")
-                _remove()
-                return false
-            }
-            return true
-        }
-
-        return _remove()
+    File {
+        id: bingXml
+        fileName: dirSearchPlugin + "/bing.xml"
     }
 
-    function _copy() {
-        var result = pluginResource.copy(searchPlugin.absoluteFilePath)
-        console.log("file was " + (result ? "copied" : "not copied"))
-        if(!result) return
+    ApplicationSettings {
+        id: settings
 
-        try {
-            result = _removeJson()
-            if(!result) {
-                console.log("error removing json")
-                return false
-            }
+        applicationName: "harbour-duckduckgo"
+        fileName: "settings"
 
-            searchJson.open(File.ReadOnly)
-            var dataString = searchJson.readAll()
-            var json = JSON.parse(dataString)
-            searchJson.close()
+        property string oldJsonApi: ""
+        property string oldSearchApi: ""
+        property string oldTemplateApi: ""
+    }
 
-            metadataResource.open(File.ReadOnly)
-            var ddgString = metadataResource.readAll()
-            ddgString = ddgString.replace("!!SEARCH_PATH!!", dirSearchJson)
-            console.log(ddgString)
-            var ddg = JSON.parse(ddgString)
+    function exists() {
+        return isReadyState(false)
+    }
 
-            console.log("adding ddg to json")
-            json.directories[dirSearchPlugin].engines.push(ddg)
-            console.log("writing search.json")
-            searchJson.open(File.WriteOnly)
-            searchJson.write(JSON.stringify(json))
-            searchJson.close()
-        } catch(e) {
-            console.error(e)
+    function isReadyState(enable) {
+        if(!bingXml.exists) {
+            console.log(bingXml.absoluteFilePath + " does not exist")
+            return false
+        }
+
+        var searchSite = enable ? "bing" : "duckduckgo";
+
+        bingXml.close()
+        bingXml.open(File.ReadOnly)
+        var bingStr = bingXml.readAll()
+        bingXml.close()
+        var searchArray = bingStr.match(/<SearchForm>(.*?)<\/SearchForm>/)
+        if(!!!searchArray || searchArray.length <= 1 || searchArray[1].toLowerCase().indexOf(searchSite) === -1) {
+            return false
+        }
+
+        searchArray = bingStr.match(/type="application\/x-suggestions.*?template="(.*?)">/)
+        if(!!!searchArray || searchArray.length <= 1 || searchArray[1].toLowerCase().indexOf(searchSite) === -1) {
+            return false
+        }
+
+        searchArray = bingStr.match(/type="text\/html.*?template="(.*?)">/)
+        if(!!!searchArray || searchArray.length <= 1 || searchArray[1].toLowerCase().indexOf(searchSite) === -1) {
             return false
         }
 
         return true
     }
 
-    function _remove() {
-        var result = searchPlugin.exists ? searchPlugin.remove() : true;
-        console.log("file was " + (result ? "removed" : "not removed"))
-        if(!result) return
+    function updateSearch(makeDuck) {
+        if(!isReadyState(makeDuck)) return false
 
-        var result = _removeJson()
+        bingXml.close()
+        bingXml.open(File.ReadOnly)
+        var bingStr = bingXml.readAll()
 
-        return result
-    }
-
-    function _removeJson() {
-        try {
-            searchJson.close()
-            searchJson.open(File.ReadWrite)
-            var str = searchJson.readAll()
-            //console.log(str)
-            var json = JSON.parse(str)
-            var engines = json.directories[dirSearchPlugin].engines
-            for(var i = 0;i < engines.length;i ++) {
-                var engine = engines[i]
-                if(engine["_name"] == "DuckDuckGo") {
-                    json.directories[dirSearchPlugin].engines.splice(i,1)
-                    searchJson.write(JSON.stringify(json))
-                    break
-                }
-            }
-            searchJson.close()
-        } catch(e) {
-            console.error(e)
+        // Replace SearchForm
+        var searchArray = bingStr.match(/<SearchForm>(.*?)<\/SearchForm>/)
+        if(!!!searchArray || searchArray.length <= 1) {
             return false
         }
+        settings.oldSearchApi = makeDuck ? searchArray[1] : settings.oldSearchApi
+        var oldStr = makeDuck ? settings.oldSearchApi : searchString
+        var newStr = makeDuck ? searchString : settings.oldSearchApi
+        bingStr = bingStr.replace("<SearchForm>" + oldStr + "</SearchForm>", "<SearchForm>" + newStr + "</SearchForm>")
+
+        // Replace JSON API String
+        searchArray = bingStr.match(/type="application\/x-suggestions.*?template="(.*?)">/)
+        if(!!!searchArray || searchArray.length <= 1) {
+            return false
+        }
+        settings.oldJsonApi = makeDuck ? searchArray[1] : settings.oldJsonApi
+        var newApiString = searchArray[0].replace(searchArray[1], apiString)
+        oldStr = makeDuck ? searchArray[0] : newApiString
+        newStr = makeDuck ? newApiString : searchArray[0]
+        bingStr = bingStr.replace(oldStr, newStr)
+
+        // Replace Search Term URL
+        searchArray = bingStr.match(/type="text\/html.*?template="(.*?)">/)
+        if(!!!searchArray || searchArray.length <= 1) {
+            return false
+        }
+        settings.oldTemplateApi = makeDuck ? searchArray[1] : settings.oldTemplateApi
+        var newTemplateString = searchArray[0].replace(searchArray[1], templateString)
+        oldStr = makeDuck ? searchArray[0] : newTemplateString
+        newStr = makeDuck ? newTemplateString : searchArray[0]
+        bingStr = bingStr.replace(oldStr, newStr)
+
+        console.log(bingStr)
+        bingXml.close()
+        bingXml.open(File.WriteOnly)
+        bingXml.write(bingStr)
+        bingXml.close()
         return true
     }
 }

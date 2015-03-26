@@ -32,42 +32,42 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="47"/>
+        <location filename="../qml/pages/SearchPage.qml" line="46"/>
         <source>DuckDuckGo Web Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="52"/>
+        <location filename="../qml/pages/SearchPage.qml" line="51"/>
         <source>Search Engine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="56"/>
+        <location filename="../qml/pages/SearchPage.qml" line="55"/>
         <source>Using the Browser settings will erase your search engine preference</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="64"/>
+        <location filename="../qml/pages/SearchPage.qml" line="63"/>
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="89"/>
+        <location filename="../qml/pages/SearchPage.qml" line="79"/>
         <source>An error occurred. Contact the Developer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="96"/>
+        <location filename="../qml/pages/SearchPage.qml" line="86"/>
         <source>Restart the Browser in order for your settings to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="128"/>
+        <location filename="../qml/pages/SearchPage.qml" line="112"/>
         <source>Enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="132"/>
+        <location filename="../qml/pages/SearchPage.qml" line="116"/>
         <source>Disable</source>
         <translation type="unfinished"></translation>
     </message>

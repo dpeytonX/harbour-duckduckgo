@@ -33,7 +33,6 @@ import Sailfish.Silica 1.0
 import harbour.duckduckgo 1.0
 import harbour.duckduckgo.SailfishWidgets.Components 1.3
 
-
 Page {
     id: page
 
@@ -66,21 +65,12 @@ Page {
             property bool isRemove: false
 
             onClicked: {
-                enabled = false
                 console.log("Clicked enable button")
-                if(isRemove) {
-                    cleanup(ddg.toggleDuckDuckGo(false))
-                } else {
-                    if(ddg.toggleDuckDuckGo(true)) {
-                        // console.log("Set configuration to: " + searchEngineConfig.value)
-                       // searchEngineConfig.value = "DuckDuckGo"
-                        // Just in case our setting was denied
-                        //cleanup(searchEngineConfig.value == "DuckDuckGo")
-                        cleanup(true)
-                    } else {
-                        cleanup(false)
-                    }
+                if(ddg.updateSearch(!isRemove)) {
+                    cleanup(true)
+                    return
                 }
+                cleanup(false)
             }
         }
 
@@ -99,15 +89,9 @@ Page {
         }
     }
 
-    /*
-    ConfigurationValue {
-        id: searchEngineConfig
-        key: "/apps/sailfish-browser/settings/search_engine"
-    }*/
-
     Component.onCompleted: {
-        var exists = ddg.searchPlugin.exists
-        console.log("search plugin " + ddg.searchPlugin.absoluteFilePath + (exists ? " exists" : " does not exist"))
+        var exists = ddg.exists()
+        console.log("search plugin duckduckgo " + (exists ? " exists" : " does not exist"))
         toggleButton(!exists)
     }
 
