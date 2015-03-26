@@ -40,10 +40,12 @@ Item {
             if(!_copy()) {
                 console.log("Copy failed. Removing")
                 _remove()
+                return false
             }
+            return true
         }
 
-        _remove()
+        return _remove()
     }
 
     function _copy() {
@@ -51,32 +53,69 @@ Item {
         console.log("file was " + (result ? "copied" : "not copied"))
         if(!result) return
 
-        var json = JSON.parse(searchJson.readAll())
-        var ddg = JSON.parse(metadataResource.readAll())
-        console.log("adding ddg to json")
-        json.directories[0].engines.push(ddg)
+        try {
+            result = _removeJson()
+            if(!result) {
+                console.log("error removing json")
+                return false
+            }
 
-        console.log("writing search.json")
-        searchJson.write(JSON.stringify(json))
+            searchJson.open(File.ReadOnly)
+            var dataString = searchJson.readAll()
+            var json = JSON.parse(dataString)
+            searchJson.close()
+
+            metadataResource.open(File.ReadOnly)
+            var ddgString = metadataResource.readAll()
+            ddgString = ddgString.replace("!!SEARCH_PATH!!", dirSearchJson)
+            console.log(ddgString)
+            var ddg = JSON.parse(ddgString)
+
+            console.log("adding ddg to json")
+            json.directories[dirSearchPlugin].engines.push(ddg)
+            console.log("writing search.json")
+            searchJson.open(File.WriteOnly)
+            searchJson.write(JSON.stringify(json))
+            searchJson.close()
+        } catch(e) {
+            console.error(e)
+            return false
+        }
+
         return true
     }
 
     function _remove() {
-        var result = searchPlugin.remove();
+        var result = searchPlugin.exists ? searchPlugin.remove() : true;
         console.log("file was " + (result ? "removed" : "not removed"))
         if(!result) return
 
-        var json = JSON.parse(searchJson.readAll())
-        var engines = json.directories[0].engines
-        for(var i = 0;i < engines.length;i ++) {
-            var engine = engines[i]
-            if(engine["_name"] == "DuckDuckGo") {
-                engines = Variant.remove(engines, engine)
-                searchJson.write(JSON.stringify(searchJson))
-                break;
-            }
-        }
+        var result = _removeJson()
 
         return result
+    }
+
+    function _removeJson() {
+        try {
+            searchJson.close()
+            searchJson.open(File.ReadWrite)
+            var str = searchJson.readAll()
+            //console.log(str)
+            var json = JSON.parse(str)
+            var engines = json.directories[dirSearchPlugin].engines
+            for(var i = 0;i < engines.length;i ++) {
+                var engine = engines[i]
+                if(engine["_name"] == "DuckDuckGo") {
+                    json.directories[dirSearchPlugin].engines.splice(i,1)
+                    searchJson.write(JSON.stringify(json))
+                    break
+                }
+            }
+            searchJson.close()
+        } catch(e) {
+            console.error(e)
+            return false
+        }
+        return true
     }
 }
