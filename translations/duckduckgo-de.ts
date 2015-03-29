@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
-<context>
-    <name></name>
-    <message id="settings_browser-ph-browser">
-        <source>Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="settings_browser-la-search_engine">
-        <source>Search engine</source>
-        <extracomment>Label for combobox that sets search engine used in browser</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="settings_browser-bt-privacy">
-        <source>Privacy</source>
-        <extracomment>Button for opening privacy settings page.</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
+<TS version="2.1">
 <context>
     <name>CoverPage</name>
     <message>
@@ -25,7 +8,7 @@
         <translation type="obsolete">Mein Cover</translation>
     </message>
     <message>
-        <source>DDG</source>
+        <source>DuckDuckGo</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -78,6 +61,10 @@
         <source>Restart the Browser in order for your settings to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Now, set Bing as the default search engine in order to use DuckDuckGo.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SecondPage</name>
@@ -91,22 +78,15 @@
     </message>
     <message>
         <source>Show Page 2</source>
-        <translation type="unfinished">Zur Seite 2</translation>
+        <translation type="obsolete">Zur Seite 2</translation>
     </message>
     <message>
         <source>UI Template</source>
-        <translation type="unfinished">UI-Vorlage</translation>
+        <translation type="obsolete">UI-Vorlage</translation>
     </message>
     <message>
         <source>Hello Sailors</source>
-        <translation type="unfinished">Hallo Matrosen</translation>
-    </message>
-</context>
-<context>
-    <name>StandardListView</name>
-    <message>
-        <source>No items</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Hallo Matrosen</translation>
     </message>
 </context>
 </TS>

@@ -28,36 +28,30 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import QtQuick 2.0
+import QtQuick 2.1
 import Sailfish.Silica 1.0
-import org.nemomobile.configuration 1.0
-import com.github.prplmnky.duckduckgo 1.0
-import "../widgets"
-
+import harbour.duckduckgo 1.0
+import harbour.duckduckgo.SailfishWidgets.Components 1.3
 
 Page {
     id: page
 
+    DdgManager {
+        id: ddg
+    }
+
     // Place our content in a Column.  The PageHeader is always placed at the top
     // of the page, followed by our content.
-    Column {
-        anchors.left: page.left
-        anchors.leftMargin: Theme.paddingLage
+    PageColumn {
+        title: qsTr("DuckDuckGo Web Search")
         id: column
-        spacing: Theme.paddingLarge
-        width: page.width
 
-
-        PageHeader {
-            title: qsTr("DuckDuckGo Web Search")
-        }
-
-        Heading {
+        SectionHeader {
             x: Theme.paddingLarge
             text: qsTr("Search Engine")
         }
 
-        DescriptiveLabel {
+        Paragraph {
             text: qsTr("Using the Browser settings will erase your search engine preference")
             width: page.width
         }
@@ -71,54 +65,44 @@ Page {
             property bool isRemove: false
 
             onClicked: {
-                enabled = false
                 console.log("Clicked enable button")
-                if(isRemove) {
-                    cleanup(manager.toggleDuckDuckGo(false))
-                } else {
-                    if(manager.toggleDuckDuckGo(true)) {
-                        console.log("Set configuration to: " + searchEngineConfig.value)
-                        searchEngineConfig.value = "DuckDuckGo"
-                        // Just in case our setting was denied
-                        cleanup(searchEngineConfig.value == "DuckDuckGo")
-                    } else {
-                        cleanup(false)
-                    }
+                if(ddg.updateSearch(!isRemove)) {
+                    cleanup(true)
+                    return
                 }
+                cleanup(false)
             }
         }
 
-        DescriptiveLabel {
+        Subtext {
             id: error
             text: qsTr("An error occurred. Contact the Developer")
             width: parent.width
             visible: false
         }
 
-        DescriptiveLabel {
+        Paragraph {
+            property bool extra: false
+
             id: suggestion
-            text: qsTr("Restart the Browser in order for your settings to take effect.")
+            text: qsTr("Restart the Browser in order for your settings to take effect.") + (extra ? "\n" + qsTr("Now, set Bing as the default search engine in order to use DuckDuckGo.") : "")
             width: parent.width
             visible: false
         }
     }
 
-    ConfigurationValue {
-        id: searchEngineConfig
-        key: "/apps/sailfish-browser/settings/search_engine"
+    Component.onCompleted: {
+        var exists = ddg.exists()
+        console.log("search plugin duckduckgo " + (exists ? " exists" : " does not exist"))
+        toggleButton(!exists)
     }
-
-    Manager {
-        id: manager
-    }
-
-    Component.onCompleted: toggleButton(!manager.fileExists())
 
     function cleanup(good) {
         console.log("Clean up is " + (good ? "good" : "bad"))
         error.visible = !good
         if(good) {
             suggestion.visible = true
+            suggestion.extra = !searchButton.isRemove
             toggleButton(searchButton.isRemove)
         }
     }

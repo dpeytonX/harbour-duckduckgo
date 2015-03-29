@@ -28,24 +28,12 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import QtQuick 2.0
+import QtQuick 2.1
 import Sailfish.Silica 1.0
+import harbour.duckduckgo 1.0
+import harbour.duckduckgo.SailfishWidgets.Components 1.3
 
-CoverBackground {
-    Column {
-        anchors.top: parent.top
-        anchors.topMargin: Theme.paddingLarge
-        spacing: 10
-        width: parent.width
-        Image {
-            anchors.horizontalCenter: parent.horizontalCenter
-            opacity: 0.5
-            source: "qrc:///duckduckgo.png"
-        }
-        Label {
-            anchors.horizontalCenter: parent.horizontalCenter
-            id: label
-            text: qsTr("DDG")
-        }
-    }
+StandardCover {
+    imageSource: UIConstants.appImage
+    coverTitle: qsTr("DuckDuckGo")
 }

@@ -11,4 +11,8 @@
 * Mon Oct 13 2014 Dametrious Peyton <dametrious.peyton@countermail.com> 0.0.1-1
 - Added DuckDuckGo as the default search
 
+* Wed Mar 25 2015 Dametrious Peyton <dametrious.peyton@countermail.com> 2.0.0-1
+- Reboot
 
+* Sat Mar 28 2015 Dametrious Peyton <dametrious.peyton@countermail.com> 2.0.0-2
+- Replacing Bing with DuckDuckGo search

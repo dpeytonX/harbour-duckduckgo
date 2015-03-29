@@ -1,0 +1,4 @@
+module harbour.duckduckgo
+
+UIConstants 1.0 UIConstants.js
+DdgManager 1.0 DdgManager.qml

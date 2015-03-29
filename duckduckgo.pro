@@ -10,33 +10,32 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = duckduckgo
+TARGET = harbour-duckduckgo
 
 CONFIG += sailfishapp
 
-SOURCES += src/duckduckgo.cpp \
-    src/manager.cpp
+SOURCES += src/duckduckgo.cpp
 
 QMAKE_CXXFLAGS += -std=c++0x
 
-OTHER_FILES += qml/duckduckgo.qml \
+OTHER_FILES += qml/* \
+    qml/pages/* \
     qml/cover/CoverPage.qml \
-    rpm/duckduckgo.changes.in \
-    rpm/duckduckgo.spec \
-    rpm/duckduckgo.yaml \
+    qml/widgets/* \
+    rpm/* \
     translations/*.ts \
-    duckduckgo.desktop \
-    duckduckgo.png \
+    harbour-duckduckgo.desktop \
+    harbour-duckduckgo.png \
     duckduckgo.xml \
+    duckduckgo.json \
     duckduckgo_small.png \
-    duckduckgo_cover.png \
-    qml/pages/ConfigurePage.qml \
-    rpm/duckduckgo.spec \
-    qml/widgets/StandardListView.qml \
-    qml/widgets/InformationalLabel.qml \
-    qml/widgets/Heading.qml \
-    qml/widgets/DescriptiveLabel.qml \
-    qml/pages/SearchPage.qml
+    duckduckgo_cover.png
+
+OTHER_FILES += harbour/duckduckgo
+QML_IMPORT_PATH = .
+duckduckgo.files = harbour
+duckduckgo.path = /usr/share/$${TARGET}
+INSTALLS += duckduckgo
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -47,5 +46,4 @@ RESOURCES += \
     images.qrc \
     project.qrc
 
-HEADERS += \
-    src/manager.h
+HEADERS +=
