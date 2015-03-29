@@ -2,23 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name></name>
-    <message id="settings_browser-ph-browser">
-        <source>Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="settings_browser-la-search_engine">
-        <source>Search engine</source>
-        <extracomment>Label for combobox that sets search engine used in browser</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="settings_browser-bt-privacy">
-        <source>Privacy</source>
-        <extracomment>Button for opening privacy settings page.</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CoverPage</name>
     <message>
         <source>My Cover</source>
@@ -76,6 +59,10 @@
     </message>
     <message>
         <source>Restart the Browser in order for your settings to take effect.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Now, set Bing as the default search engine in order to use DuckDuckGo.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -5,10 +5,9 @@ This is a Sailfish application which toggles the default search engine to Duck D
 <p>
 Download the binary from the download directory.
 
-<h2>Update 9</h2>
-This application has stopped working on Update 9 because of several changes made to the Browser application and Settings pages. A more detailed description is located <a href="https://github.com/prplmnky/harbour-duckduckgo/issues/1">here</a>
+<h2>Update 11</h2>
 <p>
-I can't say fully, but development will probably stop until I (or a contributor) has time to track this down or until Update 10 offers some mechanism to extend the search engines or provides DuckDuckGo, natively.
+I was able to get DuckDuckGo the default search engine by updating the Bing search plugin to route to <a href="https://duckduckgo.com">https://duckduckgo.com</a> instead. You can search DuckDuckGo by setting Bing as the default search engine in the Settings > App > Browser area.
 
 <h2>License</h2>
 

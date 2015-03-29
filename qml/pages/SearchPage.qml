@@ -82,8 +82,10 @@ Page {
         }
 
         Paragraph {
+            property bool extra: false
+
             id: suggestion
-            text: qsTr("Restart the Browser in order for your settings to take effect.")
+            text: qsTr("Restart the Browser in order for your settings to take effect.") + (extra ? "\n" + qsTr("Now, set Bing as the default search engine in order to use DuckDuckGo.") : "")
             width: parent.width
             visible: false
         }
@@ -100,6 +102,7 @@ Page {
         error.visible = !good
         if(good) {
             suggestion.visible = true
+            suggestion.extra = !searchButton.isRemove
             toggleButton(searchButton.isRemove)
         }
     }
