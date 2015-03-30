@@ -28,3 +28,6 @@ Version 2.0
 
 <br>
 Copyright ©2015 Dametrious Peyton. All Rights Reserved
+
+<br>
+This branch should be the same as master with the exception that it is using DuckDuckGo intellectual property.
