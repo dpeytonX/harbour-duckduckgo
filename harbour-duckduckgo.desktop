@@ -3,8 +3,8 @@ Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=harbour-duckduckgo
 Exec=harbour-duckduckgo
-Name=Duckduckgo
+Name=DDG Search
 # translation example:
 # your app name in German locale (de)
-Name[de]=Duckduckgo
+Name[de]=DDG Search
 
