@@ -1,7 +1,7 @@
 <h2>About</h2>
 This is a Sailfish application which toggles the default search engine to Duck Duck GO.
 
-<b>I can't put this on Jolla Store because among other things it writes to the .mozembed directory</b>
+<b>Harbour store pending</b>
 <p>
 Download the binary from the download directory.
 
