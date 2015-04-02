@@ -1,7 +1,7 @@
 <h2>About</h2>
 This is a Sailfish application which toggles the default search engine to Duck Duck GO.
 
-<b>Harbour store pending</b>
+<b>Harbour store available</b>
 <p>
 Download the binary from the download directory.
 
