@@ -37,6 +37,14 @@ duckduckgo.files = harbour
 duckduckgo.path = /usr/share/$${TARGET}
 INSTALLS += duckduckgo
 
+LIBS += -L$$PWD/harbour/duckduckgo/SailfishWidgets/Core -L$$PWD/harbour/duckduckgo/SailfishWidgets/Settings -lapplicationsettings -lcore
+duckduckgolibs.files = $$PWD/harbour/duckduckgo/SailfishWidgets/Settings/libapplicationsettings* \
+                       $$PWD/harbour/duckduckgo/SailfishWidgets/Core/libcore*
+duckduckgolibs.path = /usr/share/$${TARGET}/lib
+  # Delete the private lib for the harbour store RPM validator
+duckduckgolibs.commands = "rm -fr /home/deploy/installroot/usr/share/harbour-duckduckgo/harbour/duckduckgo/SailfishWidgets/Core"
+INSTALLS += duckduckgolibs
+
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n

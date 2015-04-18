@@ -31,64 +31,102 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import harbour.duckduckgo 1.0
-import harbour.duckduckgo.SailfishWidgets.Components 1.3
+import harbour.duckduckgo.SailfishWidgets.Components 1.4
+import harbour.duckduckgo.SailfishWidgets.Utilities 1.4
 
-Page {
+OrientationPage {
     id: page
+
+    OrientationHelper {}
 
     DdgManager {
         id: ddg
     }
 
-    // Place our content in a Column.  The PageHeader is always placed at the top
-    // of the page, followed by our content.
-    PageColumn {
-        title: qsTr("DuckDuckGo Web Search")
-        id: column
+    DynamicLoader {
+        id: loader
 
-        SectionHeader {
-            x: Theme.paddingLarge
-            text: qsTr("Search Engine")
+        onObjectCompleted: pageStack.push(object)
+    }
+
+    Component {
+        id: aboutDialog
+        AboutPage {
+            description: qsTr("Configures the DuckDuckGo Search Engine")
+            icon: UIConstants.appIcon
+            application: UIConstants.appTitle + " " + UIConstants.appVersion
+            copyrightHolder: UIConstants.appCopyright
+            copyrightYear: UIConstants.appYear
+            contributors: UIConstants.appAuthors
+            licenses: UIConstants.appLicense
+            pageTitle: UIConstants.appTitle
+            projectLinks: UIConstants.appProjectInfo
         }
+    }
 
-        Paragraph {
-            text: qsTr("Using the Browser settings will erase your search engine preference")
-            width: page.width
-        }
+    SilicaFlickable {
+        anchors.fill: parent
+        contentHeight: column.height
 
-        Button {
-            anchors.horizontalCenter: parent.horizontalCenter
-            enabled: false
-            id: searchButton
-            text: qsTr("Loading...")
+        // Place our content in a Column.  The PageHeader is always placed at the top
+        // of the page, followed by our content.
+        PageColumn {
+            title: qsTr("DuckDuckGo Web Search")
+            id: column
 
-            property bool isRemove: false
+            SectionHeader {
+                x: Theme.paddingLarge
+                text: qsTr("Search Engine")
+            }
 
-            onClicked: {
-                console.log("Clicked enable button")
-                if(ddg.updateSearch(!isRemove)) {
-                    cleanup(true)
-                    return
+            Paragraph {
+                text: qsTr("Using the Browser settings will erase your search engine preference")
+                width: page.width
+            }
+
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                enabled: false
+                id: searchButton
+                text: qsTr("Loading...")
+
+                property bool isRemove: false
+
+                onClicked: {
+                    console.log("Clicked enable button")
+                    if(ddg.updateSearch(!isRemove)) {
+                        cleanup(true)
+                        return
+                    }
+                    cleanup(false)
                 }
-                cleanup(false)
+            }
+
+            Subtext {
+                id: error
+                text: qsTr("An error occurred. Contact the Developer")
+                width: parent.width
+                visible: false
+            }
+
+            Paragraph {
+                property bool extra: false
+
+                id: suggestion
+                text: qsTr("Restart the Browser in order for your settings to take effect.") + (extra ? "\n" + qsTr("Now, set Bing as the default search engine in order to use DuckDuckGo.") : "")
+                width: parent.width
+                visible: false
+            }
+        }
+        PullDownMenu  {
+            id:pulley
+
+            StandardMenuItem {
+                text: qsTr("About")
+                onClicked: loader.create(aboutDialog, page, {})
             }
         }
 
-        Subtext {
-            id: error
-            text: qsTr("An error occurred. Contact the Developer")
-            width: parent.width
-            visible: false
-        }
-
-        Paragraph {
-            property bool extra: false
-
-            id: suggestion
-            text: qsTr("Restart the Browser in order for your settings to take effect.") + (extra ? "\n" + qsTr("Now, set Bing as the default search engine in order to use DuckDuckGo.") : "")
-            width: parent.width
-            visible: false
-        }
     }
 
     Component.onCompleted: {
