@@ -16,3 +16,7 @@
 
 * Sat Mar 28 2015 Dametrious Peyton <dametrious.peyton@countermail.com> 2.0.0-2
 - Replacing Bing with DuckDuckGo search
+
+* Sat Apr 18 2015 Dametrious Peyton <dametrious.peyton@countermail.com> 2.1.0-1
+- Add orientation switching
+- About Page

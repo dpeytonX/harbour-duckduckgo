@@ -65,6 +65,14 @@
         <source>Now, set Bing as the default search engine in order to use DuckDuckGo.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Configures the DuckDuckGo Search Engine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SecondPage</name>

@@ -1,13 +1,14 @@
 <h2>About</h2>
 This is a Sailfish application which toggles the default search engine to Duck Duck GO.
 
-<b>I can't put this on Jolla Store because among other things it writes to the .mozembed directory</b>
+<b>Harbour store available</b>
 <p>
 Download the binary from the download directory.
 
-<h2>Update 11</h2>
+<h2>Update 10 and Update 12</h2>
 <p>
 I was able to get DuckDuckGo the default search engine by updating the Bing search plugin to route to <a href="https://duckduckgo.com">https://duckduckgo.com</a> instead. You can search DuckDuckGo by setting Bing as the default search engine in the Settings > App > Browser area.
+<b> Update 11 will not work.</b> I do not have an Update 11 device to test with but Jolla QA rejected this app. Update 12 is a developer release and is what I test with, however Jolla store limits the official store binary to Update 10. For now, you can download the binary from the download directory until I update the application's release version in Harbour.
 
 <h2>License</h2>
 

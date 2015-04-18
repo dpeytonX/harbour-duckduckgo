@@ -31,7 +31,7 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import harbour.duckduckgo 1.0
-import harbour.duckduckgo.SailfishWidgets.Components 1.3
+import harbour.duckduckgo.SailfishWidgets.Components 1.4
 
 StandardCover {
     imageSource: UIConstants.appImage
