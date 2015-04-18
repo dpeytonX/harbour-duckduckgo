@@ -1,8 +1,8 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
-import harbour.duckduckgo.SailfishWidgets.FileManagement 1.3
-import harbour.duckduckgo.SailfishWidgets.JS 1.3
-import harbour.duckduckgo.SailfishWidgets.Settings 1.3
+import harbour.duckduckgo.SailfishWidgets.FileManagement 1.4
+import harbour.duckduckgo.SailfishWidgets.JS 1.4
+import harbour.duckduckgo.SailfishWidgets.Settings 1.4
 
 Item {
     readonly property string dirSearchJson: dir.XdgHome + "/.mozilla/mozembed"

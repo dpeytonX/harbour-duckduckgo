@@ -7,6 +7,7 @@ Name:       harbour-duckduckgo
 
 # >> macros
 %define __provides_exclude_from ^%{_datadir}/.*$
+%define __requires_exclude ^libapplicationsettings|libcore.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
@@ -14,13 +15,13 @@ Name:       harbour-duckduckgo
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    DuckDuckGo Search
-Version:    2.0
+Version:    2.1
 Release:    1
 Group:      Applications/Internet
 License:    GPLv3
-URL:        http://github.org/prplmnky/harbour-duckduckgo
+URL:        https://github.org/prplmnky/harbour-duckduckgo
 Source0:    %{name}-%{version}.tar.bz2
-Source100:  duckduckgo.yaml
+#Source100:  duckduckgo.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
